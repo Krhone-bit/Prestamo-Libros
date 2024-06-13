@@ -1,0 +1,121 @@
+# depslib dependency file v1.0
+1332252520 source:d:\carpeta de proyectos\prestamos de libro\main.cpp
+	"include/prestamo.h"
+	<iostream>
+
+1332249310 source:d:\carpeta de proyectos\prestamos de libro\src\persona.cpp
+	"../include/Persona.h"
+	<iostream>
+	<string.h>
+
+1332251409 d:\carpeta de proyectos\prestamos de libro\include\persona.h
+
+1332249739 source:d:\carpeta de proyectos\prestamos de libro\src\libro.cpp
+	"../include/Libro.h"
+	<string.h>
+	<iostream>
+
+1332251064 d:\carpeta de proyectos\prestamos de libro\include\libro.h
+
+1332250454 source:d:\carpeta de proyectos\prestamos de libro\src\hora.cpp
+	"../include/Hora.h"
+	<iostream>
+
+1332250410 d:\carpeta de proyectos\prestamos de libro\include\hora.h
+
+1332251946 source:d:\carpeta de proyectos\prestamos de libro\src\fecha.cpp
+	"../include/Fecha.h"
+	<iostream>
+
+1332251892 d:\carpeta de proyectos\prestamos de libro\include\fecha.h
+
+1332252468 source:d:\carpeta de proyectos\prestamos de libro\src\prestamo.cpp
+	"../include/Prestamo.h"
+	<iostream>
+
+1332252541 d:\carpeta de proyectos\prestamos de libro\include\prestamo.h
+	"Persona.h"
+	"Libro.h"
+	"Hora.h"
+	"Fecha.h"
+
+1332983204 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\fecha.cpp
+	"../include/Fecha.h"
+	<iostream>
+
+1332983204 d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\fecha.h
+
+1332983204 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\hora.cpp
+	"../include/Hora.h"
+	<iostream>
+
+1332983203 d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\hora.h
+
+1332983203 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\libro.cpp
+	"../include/Libro.h"
+	<string.h>
+	<iostream>
+
+1332983203 d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\libro.h
+
+1332983203 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\persona.cpp
+	"../include/Persona.h"
+	<iostream>
+	<string.h>
+
+1332983203 d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\persona.h
+
+1332983204 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\prestamo.cpp
+	"../include/Prestamo.h"
+	<iostream>
+
+1332983203 d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\prestamo.h
+	"Persona.h"
+	"Libro.h"
+	"Hora.h"
+	"Fecha.h"
+
+1332983203 source:d:\mis documentos\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\main.cpp
+	"include/prestamo.h"
+	<iostream>
+
+1332983204 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\main.cpp
+	"include/prestamo.h"
+	<iostream>
+
+1332983204 c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\prestamo.h
+	"Persona.h"
+	"Libro.h"
+	"Hora.h"
+	"Fecha.h"
+
+1332983204 c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\persona.h
+
+1332983204 c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\libro.h
+
+1332983204 c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\hora.h
+
+1332983206 c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\include\fecha.h
+
+1332983206 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\fecha.cpp
+	"../include/Fecha.h"
+	<iostream>
+
+1332983206 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\hora.cpp
+	"../include/Hora.h"
+	<iostream>
+
+1332983204 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\libro.cpp
+	"../include/Libro.h"
+	<string.h>
+	<iostream>
+
+1332983204 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\persona.cpp
+	"../include/Persona.h"
+	<iostream>
+	<string.h>
+
+1332983206 source:c:\users\vctr\desktop\libros\prog.orientada a objetos\c++\edicion iii\carpeta de proyectos\prestamos de libro\src\prestamo.cpp
+	"../include/Prestamo.h"
+	<iostream>
+
