@@ -3,6 +3,7 @@
 #include <iostream>
 using namespace std;
 Libro::Libro(){
+	cod_libro=-1;
 	SetNombre("");
 	SetAutor("");
 	SetPaginas(0);
@@ -16,6 +17,20 @@ Libro::Libro(char n[50],char a[50],int p,int e,char i[50]){
 	SetEdicion(e);
 	SetIdioma(i);
 }
+
+Libro::Libro(int cod,char n[50],char a[50],int p,int e,char i[50]){
+	cod_libro=cod;
+	SetNombre(n);
+	SetAutor(a);
+	SetPaginas(p);
+	SetEdicion(e);
+	SetIdioma(i);
+}
+// Persona::Persona(long cod,char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
+// 	cod_persona=cod;
+// 	SetPersona(Nombres,Appat,Apmat,Edad,Sexo);
+// 	SetClave("");
+// }
 void Libro::SetLibro(const Libro&l){
 	*this=l;
 }
@@ -76,4 +91,9 @@ void Libro::Mostrar(){
 	cout<<"Paginas: "<<paginas<<endl;
 	cout<<"Edicion: "<<edicion<<endl;
 	cout<<"Idioma: "<<idioma<<endl<<endl;
+}
+
+void Libro::MostrarConsulta(){
+	cout<<cod_libro<<"\t"<<nombre<<"\t"<<autor<<"\t"<<paginas<<"\t";
+	cout<<edicion<<"\t"<<idioma<<endl;
 }

@@ -2,31 +2,38 @@
 #define PERSONA_H
 class Persona{
 	private:
-		int cod_persona;
-		char nombres[30];
-		char ap_pat[20];
-		char ap_mat[20];
+		long cod_persona;
+		char nombres[20];
+		char appat[20];
+		char apmat[20];
 		int edad;
 		char sexo;
+        char clave[6];
 	public:
 		Persona();
-		Persona(char n[30],char ap[20],char am[20],int e,char s);
-		void SetPersona(const Persona&p);
-		void SetNombres(char n[30]);
-		void SetApPaterno(char ap[20]);
-		void SetApMaterno(char am[20]);
-		void SetSexo(char s);
-		void SetEdad(int e);
-		char*Validar(char cad[30]);
-		int Validar(int num);
-		char Validar(char s);
+		Persona(long cod,char Nombres[20],char Appat[20],char Apmat[20],int edad,char Sexo);
+		bool Validar(char cad[20]);
+		bool ValidarSexo(char Sexo);
+        void SetCodigo(long cod);
+        void SetPersona(char Nombres[20],char Appat[20],char Apmat[20],int edad,char Sexo);
+		void SetPersona(Persona persona);
+		void SetNombres(char Nombres[20]);
+		void SetAppat(char Appat[20]);
+		void SetApmat(char Apmat[20]);
+		void SetEdad(int Edad);
+		void SetClave(char clv[6]);
+		void CumplirAnio();
+		long GetCodigo();
 		char*GetNombres();
-		char*GetApPaterno();
-		char*GetApMaterno();
-		int GetEdad();
+		char*GetAppat();
+		char*GetApmat();
 		char GetSexo();
-		void CumplirAnios();
-		void MostrarSexo();
+		int GetEdad();
+		char*GetClave();
+		Persona GetPersona();
 		void Mostrar();
+		void MostrarConsulta();
+		Persona IngresarDatosPersona(char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo);
+		~Persona();
 };
 #endif // PERSONA_H

@@ -11,7 +11,7 @@ void Prestamo::PrestarLibro(Persona P,Libro L,Hora H,Fecha F){
 	f.SetFecha(F);
 }
 void Prestamo::Mostrar(){
-	cout<<"El señor: "<<endl;
+	cout<<"El seï¿½or: "<<endl;
 	p.Mostrar();
 	cout<<endl;
 	cout<<"Se presto el Libro: "<<endl;

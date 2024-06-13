@@ -11,6 +11,7 @@ class Libro{
 	public:
 		Libro();
 		Libro(char n[50],char a[50],int p,int e,char i[50]);
+		Libro(int cod,char n[50],char a[50],int p,int e,char i[50]);
 		void SetLibro(const Libro&l);
 		void SetNombre(char n[50]);
 		void SetAutor(char a[50]);
@@ -23,6 +24,7 @@ class Libro{
 		int GetPaginas();
 		int GetEdicion();
 		char*GetIdioma();
+		void MostrarConsulta();
 
 		char*Validar(char cad[50]);
 		int Validar(int num);

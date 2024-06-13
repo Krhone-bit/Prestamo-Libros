@@ -1,97 +1,129 @@
 #include "../include/Persona.h"
-#include<iostream>
-#include<string.h>
+#include <string.h>
+#include <iostream>
 using namespace std;
 Persona::Persona(){
-	SetNombres("");
-	SetApPaterno("");
-	SetApMaterno("");
-	SetSexo('x');
-	SetEdad(0);
+	cod_persona=-1;
+	SetPersona("","","",0,'x');
+	SetClave("");
 }
-Persona::Persona(char n[30],char ap[20],char am[20],int e,char s){
-	SetNombres(n);
-	SetApPaterno(ap);
-	SetApMaterno(am);
-	SetSexo(s);
-	SetEdad(e);
+Persona::Persona(long cod,char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
+	cod_persona=cod;
+	SetPersona(Nombres,Appat,Apmat,Edad,Sexo);
+	SetClave("");
 }
-void Persona::SetPersona(const Persona&p){
-	*this=p;
+
+void Persona::SetCodigo(long cod){
+    if(cod_persona==-1)
+        cod_persona=cod;
 }
-void Persona::SetNombres(char n[30]){
-	strcpy(nombres,Validar(n));
-}
-void Persona::SetApPaterno(char ap[20]){
-	strcpy(ap_pat,Validar(ap));
-}
-void Persona::SetApMaterno(char am[20]){
-	strcpy(ap_mat,Validar(am));
-}
-void Persona::SetEdad(int e){
-	edad=Validar(e);
-}
-void Persona::SetSexo(char s){
-	sexo=Validar(s);
-}
-char*Persona::Validar(char cad[30]){
-	int i;
-	char*tmp;
-	tmp=new char[30];
-	for(i=0;cad[i]!='\0';i++){
-		if(isalpha(cad[i])){
-			tmp[i]=cad[i];
-		}
-		else{
-			tmp[i]='\0';
-			return tmp;
-		}
+bool Persona::Validar(char cad[20]){
+	int i=0;
+	while(cad[i]!='\0'){
+		if(cad[i]==' '){}
+		else if(!isalpha(cad[i]))//verifica si un caracter es una letra del alfabeto si no es una letra del alfabeto retorna falso
+			return false;
+		i++;
 	}
-	tmp[i]='\0';
-	return tmp;
+	return true;
 }
-int Persona::Validar(int num){
-	if(num>0)
-		return num;
-	return -num;
+bool Persona::ValidarSexo(char Sexo){
+	if(Sexo=='M' || Sexo=='m' || Sexo=='F'|| Sexo=='f')
+		return true;
+	return false;
 }
-char Persona::Validar(char s){
-	if(s=='M' || s=='m')
-		return 'm';
-	else if(s=='F' || s=='f')
-		return 'f';
-	return 'x';
+
+void Persona::SetPersona(char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
+	if(Validar(Nombres))
+		strcpy(nombres,Nombres);
+	else
+		strcpy(nombres,"");
+
+	if(Validar(Appat))
+		strcpy(appat,Appat);
+	else
+		strcpy(appat,"");
+
+	if(Validar(Apmat))
+		strcpy(apmat,Apmat);
+	else
+		strcpy(apmat,"");
+
+	if(Edad>=0)
+		edad=Edad;
+	else
+		edad=0;
+
+	if(ValidarSexo(Sexo))
+		sexo=Sexo;
+	else
+		sexo='x';
+}
+void Persona::SetPersona(Persona p){
+	SetPersona(p.nombres,p.appat,p.apmat,p.edad,p.sexo);
+}
+void Persona::SetNombres(char Nombres[20]){
+	if(Validar(Nombres))
+		strcpy(nombres,Nombres);
+}
+void Persona::SetAppat(char Appat[20]){
+	if(Validar(Appat))
+		strcpy(appat,Appat);
+}
+void Persona::SetApmat(char Apmat[20]){
+	if(Validar(Apmat))
+		strcpy(apmat,Apmat);
+}
+void Persona::SetEdad(int Edad){
+	if(Edad>edad)//La Edad debe de ser mayor por que no se le puede quitar a�os a una persona
+		edad=Edad;
+}
+void Persona::CumplirAnio(){
+	edad++;
+}
+void Persona::SetClave(char clv[6]){
+    strcpy(clave,clv);
+}
+long Persona::GetCodigo(){
+    return cod_persona;
 }
 char*Persona::GetNombres(){
 	return nombres;
 }
-char*Persona::GetApPaterno(){
-	return ap_pat;
+char*Persona::GetAppat(){
+	return appat;
 }
-char*Persona::GetApMaterno(){
-	return ap_mat;
+char*Persona::GetApmat(){
+	return apmat;
 }
 int Persona::GetEdad(){
 	return edad;
 }
+Persona Persona::GetPersona(){
+	return Persona(cod_persona,nombres,appat,apmat,edad,sexo);
+}
 char Persona::GetSexo(){
 	return sexo;
 }
-void Persona::CumplirAnios(){
-	edad++;
-}
-void Persona::MostrarSexo(){
-	cout<<"Sexo: ";
-	if(sexo=='m')
-		cout<<"Masculino"<<endl;
-	else if(sexo=='f')
-		cout<<"Femenino"<<endl;
-	else if(sexo=='x')
-		cout<<"No Definido"<<endl;
-}
 void Persona::Mostrar(){
-	cout<<"Nombres: "<<nombres<<endl;
-	cout<<"Apellidos: "<<ap_pat<<" "<<ap_mat<<endl;
-	cout<<"Edad: "<<edad<<endl;
-	MostrarSexo();
+	cout<<"Datos: "<<nombres<<" "<<appat<<" "<<apmat<<"\n";
+	cout<<"Edad : "<<edad<<"\n";
+	if(sexo=='M'||sexo=='m')
+		cout<<"Sexo : Masculino"<<endl;
+	else if(sexo=='F'||sexo=='f')
+		cout<<"Sexo : Femenino"<<endl;
+}
+void Persona::MostrarConsulta(){
+	cout<<cod_persona<<"\t"<<nombres<<"\t"<<appat<<"\t";
+	cout<<clave<<"\t"<<sexo<<"\t"<<endl;
+}
+char*Persona::GetClave(){
+    return clave;
+}
+Persona::~Persona(){
+	strcpy(nombres,"");
+	strcpy(appat,"");
+	strcpy(apmat,"");
+	edad=0;
+	sexo='x';
 }
