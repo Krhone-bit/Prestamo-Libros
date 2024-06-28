@@ -16,6 +16,7 @@ class Consultar{
         // void MostrarCompradores();
         // int GetNumCelulares();
         Persona GetAdmin();
+        void MostrarLibrosPrestados();
         // VentaCelular*GetVentasFecha(Fecha f,int&n);
 };
 #endif // CONSULTAR_H

@@ -32,3 +32,12 @@ void Guardar::GuardarLibro(Libro lib){
 void Guardar::GuardarPersona(Persona per){
     GuardarPersona(per, "per.bin");
 }
+
+void Guardar::GuardarPrestamo(Prestamo pre){
+    FILE*archivo;
+    archivo = fopen("pre.bin","w");
+    // Prestamo(pre);
+    fseek(archivo, SEEK_SET,0);
+    fwrite(&pre,sizeof(pre),1,archivo);
+    fclose(archivo);
+}

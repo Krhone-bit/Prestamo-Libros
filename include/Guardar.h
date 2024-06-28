@@ -2,7 +2,7 @@
 #define GUARDAR_H
 #include "Persona.h"
 #include "Libro.h"
-// #include "VentaCelular.h"
+#include "Prestamo.h"
 #include <iostream>
 using namespace std;
 class Guardar
@@ -17,6 +17,7 @@ class Guardar
         // void GuardarCelular(Celular&cel);
         // void GuardarVentaCelular(VentaCelular ven);
         void GuardarAdmin();
+        void GuardarPrestamo(Prestamo pre);
 };
         
 #endif // GUARDAR_H

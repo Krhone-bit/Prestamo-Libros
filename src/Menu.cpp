@@ -178,10 +178,12 @@ void Menu::Usuarios(long cod_user){
     Consultar con;
     Guardar objGuardar;
     Fecha f;
-    // VentaCelular venta;
+    Prestamo prestamo_libro;
     Libro libro;
-    Persona ven;
+    // Persona ven;
     // Celular cel;
+    Hora hora;
+    Fecha fecha;
     Persona per;
     int n;
     switch(opcion){
@@ -189,13 +191,41 @@ void Menu::Usuarios(long cod_user){
             Limpiar();
             int cod_libro;
             int cod_cel;
+            char opc;
             cout<<"CODIGO DE LIBRO: ";
             cin>>cod_libro;
             libro=con.BuscarLibro(cod_libro);
             if(cod_libro==libro.GetCodLibro()){
                 libro.MostrarConsulta();
+                cout<<"LIBRO ENCONTRADO, DESEA REGISTRAR PRESTAMO? [S/N]"<<endl;
+                cin>>opc;
+                if(opc=='s' || opc=='S'){
+                    per=IngresarDatosPersona();
+                    per.SetCodigo(cod_user);
+                    hora = Hora();
+                    hora.SetHora(12, 30, 0);
+                    fecha = Fecha(28, 6, 2024);
+                    prestamo_libro.PrestarLibro(per,libro,hora,fecha);
+                    prestamo_libro.Mostrar();
+                    objGuardar.GuardarPrestamo(prestamo_libro);
+                    system("PAUSE");
+                    Usuarios(cod_user);
+                    return;
+                }else{
+                    // cout<<""<<endl;
+                    system("PAUSE");
+                    Usuarios(cod_user);
+                    return;
+                }
+            }else{
+                cout<<"LIBRO NO ENCONTRADO"<<endl;
+                system("PAUSE");
+                Usuarios(cod_user);
+                return;
             }
-            
+            // si la busqueda del libro es exitosa
+                // ese libro se va a poner en disponible false
+                
 //             else{
 //                 per=IngresarDatos();
 //                 per.SetCodigo(cod_com);
@@ -228,9 +258,11 @@ void Menu::Usuarios(long cod_user){
 
         case 2:
             Limpiar();
-//             con.MostrarCompradores();
-//             system("PAUSE");
-//             Vendedores(cod_ven);
+            con.MostrarLibrosPrestados();
+            system("PAUSE");
+            Usuarios(cod_user);
+            return;
+            // Vendedores(cod_ven);
         break;
 
         case 3:

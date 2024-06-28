@@ -97,6 +97,6 @@ void Libro::Mostrar(){
 }
 
 void Libro::MostrarConsulta(){
-	cout<<cod_libro<<"\t"<<nombre<<"\t"<<autor<<"\t"<<paginas<<"\t";
+	cout<<cod_libro<<"\t\t"<<nombre<<"\t"<<autor<<"\t"<<paginas<<"\t";
 	cout<<edicion<<"\t"<<idioma<<endl;
 }

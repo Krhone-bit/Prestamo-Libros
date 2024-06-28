@@ -49,6 +49,22 @@ void Consultar::MostrarLibros(){
     fclose(archivo);
 }
 
+void Consultar::MostrarLibrosPrestados(){
+    Libro lib;
+    FILE*archivo;
+    archivo = fopen("pre.bin", "r+");
+    if(archivo==NULL)
+        return;
+    fseek(archivo, SEEK_SET,0);
+    fread(&lib,sizeof(lib),1,archivo);
+    cout<<"CODIGO\t\tNOMBRE\tAUTOR\tPAGINAS\tEDICION\tIDIOMA"<<endl;
+    while(!feof(archivo)){
+        lib.MostrarConsulta();
+        fread(&lib,sizeof(lib),1,archivo);
+    }
+    fclose(archivo);
+}
+
 Persona Consultar::BuscarUsuario(int codigo){
     return BuscarPersona(codigo,"per.bin");
 }
