@@ -26,14 +26,14 @@ Libro::Libro(int cod,char n[50],char a[50],int p,int e,char i[50]){
 	SetEdicion(e);
 	SetIdioma(i);
 }
-// Persona::Persona(long cod,char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
-// 	cod_persona=cod;
-// 	SetPersona(Nombres,Appat,Apmat,Edad,Sexo);
-// 	SetClave("");
-// }
 void Libro::SetLibro(const Libro&l){
 	*this=l;
 }
+
+long Libro::GetCodLibro(){
+	return cod_libro;
+}
+
 void Libro::SetNombre(char n[50]){
 	strcpy(nombre,Validar(n));
 }
@@ -80,11 +80,14 @@ char*Libro::Validar(char cad[50]){
 	tmp[i]='\0';
 	return tmp;
 }
+
+
 int Libro::Validar(int num){
 	if(num>0)
 		return num;
 	return -num;
 }
+
 void Libro::Mostrar(){
 	cout<<"Titulo del Libro: "<<nombre<<endl;
 	cout<<"Autor: "<<autor<<endl;

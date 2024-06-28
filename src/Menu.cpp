@@ -28,12 +28,12 @@ void Menu::Inicio(){
     Guardar g;
     g.GuardarAdmin();
     Linea();
-    cout<<I()<<"  SISTEMA DE PRESTAMO  "<<I()<<endl;
-    cout<<I()<<"    DE LIBROS    "<<I()<<endl;
+    cout<<I()<<"  SISTEMA DE PRESTAMO   "<<I()<<endl;
+    cout<<I()<<"    DE LIBROS           "<<I()<<endl;
     Linea();
-    cout<<I()<<" [1] ADMINISTRADOR  "<<I()<<endl;
-    cout<<I()<<" [2] USUARIOS       "<<I()<<endl;
-    cout<<I()<<" [3] SALIR          "<<I()<<endl;
+    cout<<I()<<" [1] ADMINISTRADOR      "<<I()<<endl;
+    cout<<I()<<" [2] USUARIOS           "<<I()<<endl;
+    cout<<I()<<" [3] SALIR              "<<I()<<endl;
     Linea();
 
     cout<<"Opcion >> ";
@@ -88,11 +88,11 @@ void Menu::LoginAdministrador(){
 void Menu::Administrador(){
     Limpiar();
     Linea();
-    cout<<I()<<"[1] NUEVO LIBRO  "<<I()<<endl;
-    cout<<I()<<"[2] NUEVO PERSONA  "<<I()<<endl;
-    cout<<I()<<"[3] PRESTAMOS DE LIBROS x FECHA  "<<I()<<endl;
-    cout<<I()<<"[4] MOSTRAR LIBROS"<<I()<<endl;
-    cout<<I()<<"[5] SALIR           "<<I()<<endl;
+    cout<<I()<<"[1] NUEVO LIBRO                     "<<I()<<endl;
+    cout<<I()<<"[2] NUEVO USUARIO                   "<<I()<<endl;
+    cout<<I()<<"[3] PRESTAMOS DE LIBROS x FECHA     "<<I()<<endl;
+    cout<<I()<<"[4] MOSTRAR LIBROS                  "<<I()<<endl;
+    cout<<I()<<"[5] SALIR                           "<<I()<<endl;
     Linea();
     cout<<"Opcion >> ";
     cin>>opcion;
@@ -103,56 +103,24 @@ void Menu::Administrador(){
     int n;
     switch(opcion){
         case 1:
-            // NuevoVendedor();
-            // nuevo libro
             cout<<"Libro Creado"<<endl;
             NuevoLibro();
             Administrador();
         break;
 
         case 2:
-            // NuevoProducto();
-            // Administrador();
-            // nueva persona
-            cout<<"Nueva Persona Creada"<<endl;
-            NuevaPersona();
+            cout<<"Nueva Usuario Creado"<<endl;
+            NuevoUsuario();
             Administrador();
 
         break;
 
         case 3:
-            // Limpiar();
-            // con.MostrarVendedores();
-            // system("PAUSE");
-            // Administrador();
-            // PRESTAMOS
             cout<<"Prestamos Creados"<<endl;
             PrestamosLibrosFecha();
         break;
 
         case 4:
-            // VentaCelular*ventas;
-            // con.GetVentasFecha(Fecha(1,1,2012),n);
-            // ventas=new VentaCelular[n];
-            // Limpiar();
-            // f=IngresarFecha();
-            // con.GetVentasFecha(f,n);
-            // for(int i=0;i<n;i++){
-            //     com=con.BuscarComprador(ventas[i].GetCodComprador());
-            //     ven=con.BuscarVendedor(ventas[i].GetCodVendedor());
-            //     cel=con.BuscarCelular(ventas[i].GetCodCelular());
-            //     cout<<"VENDEDOR: "<<endl;
-            //     ven.Mostrar();
-            //     cout<<endl;
-            //     cout<<"COMPRADOR: "<<endl;
-            //     com.Mostrar();
-            //     cout<<endl;
-            //     cout<<"CELULAR: "<<endl;
-            //     cel.MostrarConsulta();
-            //     cout<<endl;
-            //     Linea();
-            // }
-            // system("PAUSE");
             cout<<"Libros Cargados"<<endl;
             con.MostrarLibros();
             system("PAUSE");
@@ -172,27 +140,110 @@ void Menu::Administrador(){
 }
 
 void Menu::LoginUsuarios(){
-
+    int codigo;
+    char clave[20];
+    Limpiar();
+    Linea();
+    cout<<I()<<"        LOGIN       "<<I()<<endl;
+    cout<<I()<<"      VENDEDORES    "<<I()<<endl;
+    cout<<I()<<"                    "<<I()<<endl;
+    Linea();
+    cout<<"  CODIGO >> ";
+    cin>>codigo;
+    cout<<"   CLAVE >> ";
+    cin>>clave;
+    cout<<endl;
+    Consultar con;
+    Persona x=con.BuscarUsuario(codigo);
+    if(strcmp(x.GetClave(),clave)==0){
+        Usuarios(codigo);
+    }
+    else{
+        cout<<"USUARIO O CONTRASEÑA INCORRECTA ..."<<endl;
+        system("PAUSE");
+        LoginUsuarios();
+    }
 }
 
-// Persona Menu::IngresarDatos(){
-//     char nombre[20];
-//     char appat[20];
-//     char apmat[20];
-//     int edad;
-//     char sexo;
-//     cout<<"INGRESE NOMBRE: ";
-//     cin>>nombre;
-//     cout<<"INGRESE APELLIDO PATERNO: ";
-//     cin>>appat;
-//     cout<<"INGRESE APELLIDO MATERNO: ";
-//     cin>>apmat;
-//     cout<<"INGRESE SEXO [M o F]: ";
-//     cin>>sexo;
-//     cout<<"INGRESE EDAD: ";
-//     cin>>edad;
-//     return Persona(-1,nombre,appat,apmat,edad,sexo);
-// }
+
+void Menu::Usuarios(long cod_user){
+    Limpiar();
+    Linea();
+    cout<<I()<<"[1] REGISTRAR PRESTAMO      "<<I()<<endl;
+    cout<<I()<<"[2] VER LIBROS PRESTADOS    "<<I()<<endl;
+    cout<<I()<<"[3] SALIR                   "<<I()<<endl;
+    Linea();
+    cout<<"Opcion >> ";
+    cin>>opcion;
+    Consultar con;
+    Guardar objGuardar;
+    Fecha f;
+    // VentaCelular venta;
+    Libro libro;
+    Persona ven;
+    // Celular cel;
+    Persona per;
+    int n;
+    switch(opcion){
+        case 1:
+            Limpiar();
+            int cod_libro;
+            int cod_cel;
+            cout<<"CODIGO DE LIBRO: ";
+            cin>>cod_libro;
+            libro=con.BuscarLibro(cod_libro);
+            if(cod_libro==libro.GetCodLibro()){
+                libro.MostrarConsulta();
+            }
+            
+//             else{
+//                 per=IngresarDatos();
+//                 per.SetCodigo(cod_com);
+//                 objGuardar.GuardarComprador(per);
+//                 per.Mostrar();
+//             }
+//             Linea();
+//             char modelo[20];
+//             Celular*objs;
+//             cout<<"INGRESE SU MODELO: ";
+//             cin>>modelo;
+//             con.BuscarCelular(modelo,n);
+//             objs=new Celular[n];
+//             objs=con.BuscarCelular(modelo,n);
+//             for(int i=0;i<n;i++){
+//                 cout<<"["<<i<<"] ";
+//                 objs[i].MostrarConsulta();
+//                 cout<<endl;
+//             }
+//             cout<<"INGRESE SU OPCION [0,"<<n<<"]: ";
+//             cin>>cod_cel;
+//             cod_cel=objs[cod_cel].GetCodigo();
+//             Linea();
+//             f=IngresarFecha();
+//             venta.SetDatos(cod_com,cod_ven,cod_cel,f);
+//             objGuardar.GuardarVentaCelular(venta);
+//             system("PAUSE");
+//             Vendedores(cod_ven);
+        break;
+
+        case 2:
+            Limpiar();
+//             con.MostrarCompradores();
+//             system("PAUSE");
+//             Vendedores(cod_ven);
+        break;
+
+        case 3:
+            Inicio();
+        break;
+
+        default:
+            cout<<"Elija Una Opcion Valida"<<endl;
+            system("PAUSE");
+            Usuarios(cod_user);
+        break;
+    }
+}
 
 Libro Menu::IngresarDatosLibro(){
     int cod_libro;
@@ -245,13 +296,7 @@ void Menu::NuevoLibro(){
 	int edicion;
 	char idioma[50];
     Libro l;
-    // cout<<"INGRESE CODIGO: ";
-    // cin>>cod_libro;
     l=IngresarDatosLibro();
-    // cout<<"CLAVE: ";
-    // cin>>clave;
-    // p.SetCodigo(cod);
-    // p.SetClave(clave);
     Guardar objGuardar;
     objGuardar.GuardarLibro(l);
     Linea();
@@ -260,15 +305,23 @@ void Menu::NuevoLibro(){
 }
 
 
-void Menu::NuevaPersona(){
+void Menu::NuevoUsuario(){
     Limpiar();
     Linea();
+    long cod;
+    char clave[6];
     Persona p;
+    cout<<"INGRESE CODIGO: ";
+    cin>>cod;
+    cout<<"CLAVE: ";
+    cin>>clave;
     p=IngresarDatosPersona();
+    p.SetCodigo(cod);
+    p.SetClave(clave);
     Guardar objGuardar;
     objGuardar.GuardarPersona(p);
     Linea();
-    cout<<"Persona Registrada Satisfactoriamente"<<endl;
+    cout<<"Usuario Registrado Satisfactoriamente"<<endl;
     system("PAUSE");
 }
 

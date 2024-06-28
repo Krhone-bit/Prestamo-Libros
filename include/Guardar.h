@@ -18,5 +18,5 @@ class Guardar
         // void GuardarVentaCelular(VentaCelular ven);
         void GuardarAdmin();
 };
-
+        
 #endif // GUARDAR_H
