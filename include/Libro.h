@@ -19,6 +19,7 @@ class Libro{
 		void SetEdicion(int e);
 		void SetIdioma(char i[50]);
 
+		long GetCodLibro();
 		char*GetNombre();
 		char*GetAutor();
 		int GetPaginas();

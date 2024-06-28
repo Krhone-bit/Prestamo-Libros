@@ -17,10 +17,10 @@ class Menu{
         void Administrador();
         void NuevoLibro();
         Libro IngresarDatosLibro();
-        void NuevaPersona();
+        void NuevoUsuario();
         Persona IngresarDatosPersona();
         void PrestamosLibrosFecha();
-        // void Vendedores(long cod_ven);
+        void Usuarios(long cod_user);
         // void NuevoVendedor();
         // void NuevoProducto();
         // Fecha IngresarFecha();

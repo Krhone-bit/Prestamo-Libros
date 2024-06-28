@@ -7,8 +7,8 @@ class Consultar{
    private:
         Persona BuscarPersona(int codigo,char dir[15]);
     public:
-        // Persona BuscarComprador(int codigo);
-        // Persona BuscarVendedor(int codigo);
+        Libro BuscarLibro(int codigo);
+        Persona BuscarUsuario(int codigo);
         // Celular BuscarCelular(int codigo);
         // bool SeEncuentra(char buscada[20],char cadena[20]);
         // Celular*BuscarCelular(char marca[20],int&n);

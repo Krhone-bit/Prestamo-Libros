@@ -48,3 +48,27 @@ void Consultar::MostrarLibros(){
     }
     fclose(archivo);
 }
+
+Persona Consultar::BuscarUsuario(int codigo){
+    return BuscarPersona(codigo,"per.bin");
+}
+
+
+Libro Consultar::BuscarLibro(int codigo){
+    Libro lib;
+    FILE*archivo;
+    archivo = fopen("lib.bin", "r+");
+    if(archivo==NULL)
+        return lib;
+    fseek(archivo, SEEK_SET,0);
+    fread(&lib,sizeof(lib),1,archivo);
+    while(!feof(archivo)){
+        if(lib.GetCodLibro()==codigo){
+            fclose(archivo);
+            return lib;
+        }
+        fread(&lib,sizeof(lib),1,archivo);
+    }
+    fclose(archivo);
+    return lib;
+}
