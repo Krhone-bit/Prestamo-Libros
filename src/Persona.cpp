@@ -1,129 +1,90 @@
 #include "../include/Persona.h"
 #include <string.h>
 #include <iostream>
+#include <Consultar.h>
 using namespace std;
-Persona::Persona(){
-	cod_persona=-1;
-	SetPersona("","","",0,'x');
-	SetClave("");
-}
-Persona::Persona(long cod,char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
-	cod_persona=cod;
-	SetPersona(Nombres,Appat,Apmat,Edad,Sexo);
-	SetClave("");
+
+Persona::Persona() {
+    cod_persona = -1;
+    SetPersona("", "", "", 0, 'X');
+    SetClave("");
 }
 
-void Persona::SetCodigo(long cod){
-    if(cod_persona==-1)
-        cod_persona=cod;
-}
-bool Persona::Validar(char cad[20]){
-	int i=0;
-	while(cad[i]!='\0'){
-		if(cad[i]==' '){}
-		else if(!isalpha(cad[i]))//verifica si un caracter es una letra del alfabeto si no es una letra del alfabeto retorna falso
-			return false;
-		i++;
-	}
-	return true;
-}
-bool Persona::ValidarSexo(char Sexo){
-	if(Sexo=='M' || Sexo=='m' || Sexo=='F'|| Sexo=='f')
-		return true;
-	return false;
+Persona::Persona(char Nombres[20], char Appat[20], char Apmat[20], int edad, char Sexo) {
+    // cod_persona = cod;
+    SetPersona(Nombres, Appat, Apmat, edad, Sexo);
+    SetClave("");
 }
 
-void Persona::SetPersona(char Nombres[20],char Appat[20],char Apmat[20],int Edad,char Sexo){
-	if(Validar(Nombres))
-		strcpy(nombres,Nombres);
-	else
-		strcpy(nombres,"");
+void Persona::SetCodigo(long cod) {
+    cod_persona = cod;
+}
 
-	if(Validar(Appat))
-		strcpy(appat,Appat);
-	else
-		strcpy(appat,"");
+void Persona::SetTipo(char tipo) {
+	this->tipo= tipo;
+}
 
-	if(Validar(Apmat))
-		strcpy(apmat,Apmat);
-	else
-		strcpy(apmat,"");
+void Persona::SetPersona(char Nombres[20], char Appat[20], char Apmat[20], int edad, char Sexo) {
+    strcpy(nombres, Nombres);
+    strcpy(appat, Appat);
+    strcpy(apmat, Apmat);
+    this->edad = edad;
+    this->sexo = Sexo;
+}
 
-	if(Edad>=0)
-		edad=Edad;
-	else
-		edad=0;
+void Persona::SetPersona(const Persona& p) {
+    cod_persona = p.cod_persona;
+    strcpy(nombres, p.nombres);
+    strcpy(appat, p.appat);
+    strcpy(apmat, p.apmat);
+    edad = p.edad;
+    sexo = p.sexo;
+}
 
-	if(ValidarSexo(Sexo))
-		sexo=Sexo;
-	else
-		sexo='x';
+void Persona::SetClave(char clave[6]) {
+    strcpy(this->clave, clave);
 }
-void Persona::SetPersona(Persona p){
-	SetPersona(p.nombres,p.appat,p.apmat,p.edad,p.sexo);
-}
-void Persona::SetNombres(char Nombres[20]){
-	if(Validar(Nombres))
-		strcpy(nombres,Nombres);
-}
-void Persona::SetAppat(char Appat[20]){
-	if(Validar(Appat))
-		strcpy(appat,Appat);
-}
-void Persona::SetApmat(char Apmat[20]){
-	if(Validar(Apmat))
-		strcpy(apmat,Apmat);
-}
-void Persona::SetEdad(int Edad){
-	if(Edad>edad)//La Edad debe de ser mayor por que no se le puede quitar a�os a una persona
-		edad=Edad;
-}
-void Persona::CumplirAnio(){
-	edad++;
-}
-void Persona::SetClave(char clv[6]){
-    strcpy(clave,clv);
-}
-long Persona::GetCodigo(){
+
+long Persona::GetCodigo() {
     return cod_persona;
 }
-char*Persona::GetNombres(){
-	return nombres;
+
+Persona Persona::GetPersonaByCode(int cod) {
+	Consultar busqueda;
+
+	return busqueda.BuscarUsuario(cod);
 }
-char*Persona::GetAppat(){
-	return appat;
+
+char* Persona::GetNombres() {
+    return nombres;
 }
-char*Persona::GetApmat(){
-	return apmat;
-}
-int Persona::GetEdad(){
-	return edad;
-}
-Persona Persona::GetPersona(){
-	return Persona(cod_persona,nombres,appat,apmat,edad,sexo);
-}
-char Persona::GetSexo(){
-	return sexo;
-}
-void Persona::Mostrar(){
-	cout<<"Datos: "<<nombres<<" "<<appat<<" "<<apmat<<"\n";
-	cout<<"Edad : "<<edad<<"\n";
-	if(sexo=='M'||sexo=='m')
-		cout<<"Sexo : Masculino"<<endl;
-	else if(sexo=='F'||sexo=='f')
-		cout<<"Sexo : Femenino"<<endl;
-}
-void Persona::MostrarConsulta(){
-	cout<<cod_persona<<"\t"<<nombres<<"\t"<<appat<<"\t";
-	cout<<clave<<"\t"<<sexo<<"\t"<<endl;
-}
+
 char*Persona::GetClave(){
     return clave;
 }
-Persona::~Persona(){
-	strcpy(nombres,"");
-	strcpy(appat,"");
-	strcpy(apmat,"");
-	edad=0;
-	sexo='x';
+
+void Persona::Mostrar() {
+    cout << "Codigo: " << cod_persona << endl;
+    cout << "Nombres: " << nombres << endl;
+    cout << "Apellido Paterno: " << appat << endl;
+    cout << "Apellido Materno: " << apmat << endl;
+    cout << "Edad: " << edad << endl;
+    cout << "Sexo: " << sexo << endl;
 }
+
+void Persona::MostrarUsuario(){
+	cout<<cod_persona<<"\t"<<nombres<<"\t"<<appat<<" "<<apmat<<endl;
+}
+
+bool Persona::operator==(Persona persona){
+	if (cod_persona == persona.cod_persona) {
+		return true;
+	}
+	return false;
+}
+
+// bool Fecha::operator==(Fecha fecha){
+//     if(dia==fecha.dia && mes==fecha.mes && anio==fecha.anio)
+//         return true;
+//     return false;
+// }

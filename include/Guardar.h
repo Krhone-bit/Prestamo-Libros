@@ -10,7 +10,7 @@ class Guardar
     private:
         void GuardarPersona(Persona per,char dir[15]);
     public:
-        void GuardarPersona(Persona per);
+        void GuardarPersona(Persona per, char tipo);
         // void GuardarVendedor(Persona ven);
         void GuardarLibro(Libro li);
         void GuardarLibro(Libro li,char dir[15]);

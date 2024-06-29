@@ -4,7 +4,7 @@
 void Guardar::GuardarAdmin(){
     FILE*archivo;
     archivo = fopen("admin.bin","w");
-    Persona per(0,"admin","","",0,0);
+    Persona per("admin","","",0,0);
     per.SetClave("clave");
     fseek(archivo, SEEK_SET,0);
     fwrite(&per,sizeof(per),1,archivo);
@@ -29,8 +29,12 @@ void Guardar::GuardarLibro(Libro lib){
     GuardarLibro(lib, "lib.bin");
 }
 
-void Guardar::GuardarPersona(Persona per){
-    GuardarPersona(per, "per.bin");
+void Guardar::GuardarPersona(Persona per, char tipo){
+    if(tipo == 'E'){
+        GuardarPersona(per, "enc.bin");
+    }else{
+        GuardarPersona(per, "per.bin");
+    }
 }
 
 void Guardar::GuardarPrestamo(Prestamo pre){

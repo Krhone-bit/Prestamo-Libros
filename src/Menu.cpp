@@ -12,7 +12,7 @@ Menu::Menu(){
 }
 
 void Menu::Linea(){
-    cout<<"+--------------------+"<<endl;
+    cout<<"+------------------------+"<<endl;
 }
 
 char Menu::I(){
@@ -32,7 +32,7 @@ void Menu::Inicio(){
     cout<<I()<<"    DE LIBROS           "<<I()<<endl;
     Linea();
     cout<<I()<<" [1] ADMINISTRADOR      "<<I()<<endl;
-    cout<<I()<<" [2] USUARIOS           "<<I()<<endl;
+    cout<<I()<<" [2] BIBLIOTECARIO      "<<I()<<endl;
     cout<<I()<<" [3] SALIR              "<<I()<<endl;
     Linea();
 
@@ -42,7 +42,7 @@ void Menu::Inicio(){
     if(opcion==1)
         LoginAdministrador();
     else if(opcion==2){
-        LoginUsuarios();
+        LoginBibliotecario();
     }
     else if(opcion==3){
         exit(0);
@@ -60,7 +60,7 @@ void Menu::LoginAdministrador(){
     char clave[20];
     Limpiar();
     Linea();
-    cout<<I()<<"         LOGIN      "<<I()<<endl;
+    cout<<I()<<"        LOGIN       "<<I()<<endl;
     cout<<I()<<"    ADMINISTRADOR   "<<I()<<endl;
     cout<<I()<<"                    "<<I()<<endl;
     Linea();
@@ -88,11 +88,13 @@ void Menu::LoginAdministrador(){
 void Menu::Administrador(){
     Limpiar();
     Linea();
-    cout<<I()<<"[1] NUEVO LIBRO                     "<<I()<<endl;
-    cout<<I()<<"[2] NUEVO USUARIO                   "<<I()<<endl;
-    cout<<I()<<"[3] PRESTAMOS DE LIBROS x FECHA     "<<I()<<endl;
-    cout<<I()<<"[4] MOSTRAR LIBROS                  "<<I()<<endl;
-    cout<<I()<<"[5] SALIR                           "<<I()<<endl;
+    cout<<I()<<"[1] NUEVO LIBRO             "<<I()<<endl;
+    cout<<I()<<"[2] NUEVO USUARIO           "<<I()<<endl;
+    cout<<I()<<"[3] PRESTAMOS x FECHA       "<<I()<<endl;
+    cout<<I()<<"[4] MOSTRAR LIBROS          "<<I()<<endl;
+    cout<<I()<<"[5] MOSTRAR BIBLIOTECARIOS  "<<I()<<endl;
+    cout<<I()<<"[6] MOSTRAR PRESTATARIOS    "<<I()<<endl;
+    cout<<I()<<"[7] SALIR                   "<<I()<<endl;
     Linea();
     cout<<"Opcion >> ";
     cin>>opcion;
@@ -128,6 +130,21 @@ void Menu::Administrador(){
         break;
 
         case 5:
+            cout<<"Usuarios Encargados"<<endl;
+            con.MostrarBibliotecarios();
+            system("PAUSE");
+            Administrador();
+        break;
+
+
+        case 6:
+            cout<<"Usuarios Cargados"<<endl;
+            con.MostrarPrestatarios();
+            system("PAUSE");
+            Administrador();
+        break;
+
+        case 7:
             Inicio();
         break;
 
@@ -139,13 +156,13 @@ void Menu::Administrador(){
     }
 }
 
-void Menu::LoginUsuarios(){
+void Menu::LoginBibliotecario(){
     int codigo;
     char clave[20];
     Limpiar();
     Linea();
     cout<<I()<<"        LOGIN       "<<I()<<endl;
-    cout<<I()<<"      VENDEDORES    "<<I()<<endl;
+    cout<<I()<<"    BIBLIOTECARIO   "<<I()<<endl;
     cout<<I()<<"                    "<<I()<<endl;
     Linea();
     cout<<"  CODIGO >> ";
@@ -156,22 +173,22 @@ void Menu::LoginUsuarios(){
     Consultar con;
     Persona x=con.BuscarUsuario(codigo);
     if(strcmp(x.GetClave(),clave)==0){
-        Usuarios(codigo);
+        Bibliotecario(codigo);
     }
     else{
         cout<<"USUARIO O CONTRASEÑA INCORRECTA ..."<<endl;
         system("PAUSE");
-        LoginUsuarios();
+        LoginBibliotecario();
     }
 }
 
 
-void Menu::Usuarios(long cod_user){
+void Menu::Bibliotecario(long cod_user){
     Limpiar();
     Linea();
-    cout<<I()<<"[1] REGISTRAR PRESTAMO      "<<I()<<endl;
-    cout<<I()<<"[2] VER LIBROS PRESTADOS    "<<I()<<endl;
-    cout<<I()<<"[3] SALIR                   "<<I()<<endl;
+    cout<<I()<<"[1] REGISTRAR PRESTAMO  "<<I()<<endl;
+    cout<<I()<<"[2] VER PRESTATARIOS    "<<I()<<endl;
+    cout<<I()<<"[3] SALIR               "<<I()<<endl;
     Linea();
     cout<<"Opcion >> ";
     cin>>opcion;
@@ -180,89 +197,60 @@ void Menu::Usuarios(long cod_user){
     Fecha f;
     Prestamo prestamo_libro;
     Libro libro;
-    // Persona ven;
-    // Celular cel;
     Hora hora;
     Fecha fecha;
-    Persona per;
+    Persona encargado;
+    Persona usuario;
     int n;
     switch(opcion){
         case 1:
             Limpiar();
             int cod_libro;
-            int cod_cel;
+            int cod_usuario;
             char opc;
             cout<<"CODIGO DE LIBRO: ";
             cin>>cod_libro;
             libro=con.BuscarLibro(cod_libro);
             if(cod_libro==libro.GetCodLibro()){
                 libro.MostrarConsulta();
-                cout<<"LIBRO ENCONTRADO, DESEA REGISTRAR PRESTAMO? [S/N]"<<endl;
-                cin>>opc;
-                if(opc=='s' || opc=='S'){
-                    per=IngresarDatosPersona();
-                    per.SetCodigo(cod_user);
-                    hora = Hora();
-                    hora.SetHora(12, 30, 0);
-                    fecha = Fecha(28, 6, 2024);
-                    prestamo_libro.PrestarLibro(per,libro,hora,fecha);
-                    prestamo_libro.Mostrar();
-                    objGuardar.GuardarPrestamo(prestamo_libro);
-                    system("PAUSE");
-                    Usuarios(cod_user);
-                    return;
-                }else{
-                    // cout<<""<<endl;
-                    system("PAUSE");
-                    Usuarios(cod_user);
-                    return;
-                }
             }else{
                 cout<<"LIBRO NO ENCONTRADO"<<endl;
                 system("PAUSE");
-                Usuarios(cod_user);
-                return;
+                Bibliotecario(cod_user);
             }
-            // si la busqueda del libro es exitosa
-                // ese libro se va a poner en disponible false
-                
-//             else{
-//                 per=IngresarDatos();
-//                 per.SetCodigo(cod_com);
-//                 objGuardar.GuardarComprador(per);
-//                 per.Mostrar();
-//             }
-//             Linea();
-//             char modelo[20];
-//             Celular*objs;
-//             cout<<"INGRESE SU MODELO: ";
-//             cin>>modelo;
-//             con.BuscarCelular(modelo,n);
-//             objs=new Celular[n];
-//             objs=con.BuscarCelular(modelo,n);
-//             for(int i=0;i<n;i++){
-//                 cout<<"["<<i<<"] ";
-//                 objs[i].MostrarConsulta();
-//                 cout<<endl;
-//             }
-//             cout<<"INGRESE SU OPCION [0,"<<n<<"]: ";
-//             cin>>cod_cel;
-//             cod_cel=objs[cod_cel].GetCodigo();
-//             Linea();
-//             f=IngresarFecha();
-//             venta.SetDatos(cod_com,cod_ven,cod_cel,f);
-//             objGuardar.GuardarVentaCelular(venta);
-//             system("PAUSE");
-//             Vendedores(cod_ven);
+            cout<<"CODIGO DE USUARIO: ";
+            cin>>cod_usuario;
+            usuario = con.BuscarUsuario(cod_usuario);
+            if(cod_usuario==usuario.GetCodigo()){
+                hora=IngresarHora();
+                fecha=IngresarFecha();
+                cout<<"USUARIO ENCONTRADO"<<endl;
+                // per.Mostrar();
+                prestamo_libro.PrestarLibro(cod_usuario, cod_libro, cod_user,hora,fecha);
+            }else{
+                char tipo = 'U';
+                cout<<"USUARIO NO ENCONTRADO"<<endl;
+                usuario=IngresarDatosPersona();
+                usuario.SetCodigo(cod_usuario);
+                objGuardar.GuardarPersona(usuario, tipo);
+                usuario.Mostrar();
+                hora=IngresarHora();
+                fecha=IngresarFecha();
+                prestamo_libro.PrestarLibro(usuario.GetCodigo(), cod_libro, cod_user,hora,fecha);
+            }
+            prestamo_libro.Mostrar(usuario, libro);
+            objGuardar.GuardarPrestamo(prestamo_libro);
+            system("PAUSE");
+            Bibliotecario(cod_user);
+            return;
         break;
 
         case 2:
             Limpiar();
-            con.MostrarLibrosPrestados();
+            con.MostrarPrestatarios();
             system("PAUSE");
-            Usuarios(cod_user);
+            Bibliotecario(cod_user);
             return;
-            // Vendedores(cod_ven);
         break;
 
         case 3:
@@ -272,9 +260,37 @@ void Menu::Usuarios(long cod_user){
         default:
             cout<<"Elija Una Opcion Valida"<<endl;
             system("PAUSE");
-            Usuarios(cod_user);
+            Bibliotecario(cod_user);
         break;
     }
+}
+
+Fecha Menu::IngresarFecha(){
+    int dd;
+    int mm;
+    int aa;
+    cout<<"FECHA: "<<endl;
+    cout<<"\tDIA: ";
+    cin>>dd;
+    cout<<"\tMES: ";
+    cin>>mm;
+    cout<<"\tAÑO: ";
+    cin>>aa;
+    return Fecha(dd,mm,aa);
+}
+
+Hora Menu::IngresarHora(){
+    int hora;
+    int min;
+    int seg;
+    cout<<"HORA: "<<endl;
+    cout<<"\tHORA: ";
+    cin>>hora;
+    cout<<"\tMINUTO: ";
+    cin>>min;
+    cout<<"\tSEGUNDO: ";
+    cin>>seg;
+    return Hora(hora,min,seg);
 }
 
 Libro Menu::IngresarDatosLibro(){
@@ -296,10 +312,11 @@ Libro Menu::IngresarDatosLibro(){
     cin>>edicion;
     cout<<"INGRESE IDIOMA: ";
     cin>>idioma;
-    return Libro(cod_libro,nombre,autor,paginas,edicion,idioma);
+    return Libro(cod_libro,nombre,autor,paginas,edicion,idioma,true);
 }
 
 Persona Menu::IngresarDatosPersona(){
+    int n=0;
     char nombre[20];
     char appat[20];
     char apmat[20];
@@ -315,7 +332,7 @@ Persona Menu::IngresarDatosPersona(){
     cin>>sexo;
     cout<<"INGRESE EDAD: ";
     cin>>edad;
-    return Persona(-1,nombre,appat,apmat,edad,sexo);
+    return Persona(nombre,appat,apmat,edad,sexo);
 }
 
 void Menu::NuevoLibro(){
@@ -342,16 +359,20 @@ void Menu::NuevoUsuario(){
     Linea();
     long cod;
     char clave[6];
+    char tipo; //encargado o prestador
     Persona p;
     cout<<"INGRESE CODIGO: ";
     cin>>cod;
     cout<<"CLAVE: ";
     cin>>clave;
+    cout<<"TIPO DE USUARIO [(E)ncargado , (U)suario]: "; // E=encargado U=Usuario prestador
+    cin>>tipo;
     p=IngresarDatosPersona();
     p.SetCodigo(cod);
     p.SetClave(clave);
+    p.SetTipo(tipo);
     Guardar objGuardar;
-    objGuardar.GuardarPersona(p);
+    objGuardar.GuardarPersona(p,tipo);
     Linea();
     cout<<"Usuario Registrado Satisfactoriamente"<<endl;
     system("PAUSE");

@@ -9,22 +9,25 @@ Libro::Libro(){
 	SetPaginas(0);
 	SetEdicion(0);
 	SetIdioma("");
+	SetDisponible(true);
 }
-Libro::Libro(char n[50],char a[50],int p,int e,char i[50]){
+Libro::Libro(char n[50],char a[50],int p,int e,char i[50],bool d){
 	SetNombre(n);
 	SetAutor(a);
 	SetPaginas(p);
 	SetEdicion(e);
 	SetIdioma(i);
+	SetDisponible(d);
 }
 
-Libro::Libro(int cod,char n[50],char a[50],int p,int e,char i[50]){
+Libro::Libro(int cod,char n[50],char a[50],int p,int e,char i[50], bool d){
 	cod_libro=cod;
 	SetNombre(n);
 	SetAutor(a);
 	SetPaginas(p);
 	SetEdicion(e);
 	SetIdioma(i);
+	SetDisponible(d);
 }
 void Libro::SetLibro(const Libro&l){
 	*this=l;
@@ -48,6 +51,13 @@ void Libro::SetEdicion(int e){
 }
 void Libro::SetIdioma(char i[50]){
 	strcpy(idioma,Validar(i));
+}
+void Libro::SetDisponible(bool d){
+	disponible=d;
+}
+
+bool Libro::GetDisponible(){
+	return disponible;
 }
 char*Libro::GetNombre(){
 	return nombre;
@@ -97,6 +107,12 @@ void Libro::Mostrar(){
 }
 
 void Libro::MostrarConsulta(){
+	char st[20];
+	if(disponible){
+		strcpy(st,"Disponible");	
+	}else{
+		strcpy(st,"No Disponible");
+	}
 	cout<<cod_libro<<"\t\t"<<nombre<<"\t"<<autor<<"\t"<<paginas<<"\t";
-	cout<<edicion<<"\t"<<idioma<<endl;
+	cout<<edicion<<"\t"<<idioma<<"\t"<<st<<endl;
 }
