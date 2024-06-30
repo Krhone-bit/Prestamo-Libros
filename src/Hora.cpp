@@ -19,6 +19,14 @@ void Hora::SetHora(int h,int m,int s){
 	min=m;
 	seg=s;
 }
+
+bool Hora::validarHora(int h,int m,int s){
+	if(h<0 || h>23) return false;
+	if(m<0 || m>59) return false;
+	if(s<0 || s>59) return false;
+	return true;
+}
+
 int Hora::GetHora(){
 	return hora;
 }

@@ -13,6 +13,7 @@ class Consultar{
         // bool SeEncuentra(char buscada[20],char cadena[20]);
         // Celular*BuscarCelular(char marca[20],int&n);
         void MostrarLibros();
+        void MostrarPrestamos();
         Persona*BuscarPersonas(int&n);
         // void MostrarCompradores();
         // int GetNumCelulares();
@@ -22,6 +23,10 @@ class Consultar{
         void MostrarUsuarios();
         void MostrarPrestatarios();
         void MostrarBibliotecarios();
+        Prestamo* GetPrestamosFecha(Fecha fe, int&n);
+        Persona BuscarBibliotecario(int codigo);
+        int GetNumLibros();
+        int GetNumPersonas(char dir[15]);
         // VentaCelular*GetVentasFecha(Fecha f,int&n);
 };
 #endif // CONSULTAR_H

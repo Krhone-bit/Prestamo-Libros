@@ -3,6 +3,7 @@
 class Persona {
     private:
         long cod_persona;
+        char nombre_usuario[20];
         char nombres[20];
         char appat[20];
         char apmat[20];
@@ -20,11 +21,13 @@ class Persona {
         void SetPersona(char Nombres[20], char Appat[20], char Apmat[20], int edad, char Sexo);
         void SetPersona(const Persona& p); // Asegúrate de que este método esté bien definido
         void SetClave(char clave[6]);
+        void SetNombreUsuario(char nombreU[20]);
         long GetCodigo();
 		Persona GetPersonaByCode(int cod);
         char* GetNombres();
         void Mostrar();
 		char*GetClave();
+        char*GetNombreUsuario();
 		void MostrarUsuario();
 		bool ValidarCodigo(long codigo);
 		bool operator==(Persona persona);

@@ -10,6 +10,7 @@ class Hora{
 		Hora(int h,int m,int s);
 		void SetHora(int h,int m,int s);
 		void SetHora(const Hora&h);
+		bool validarHora(int h,int m,int s);
 		int GetHora();
 		int GetMin();
 		int GetSeg();

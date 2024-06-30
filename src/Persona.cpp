@@ -8,28 +8,50 @@ Persona::Persona() {
     cod_persona = -1;
     SetPersona("", "", "", 0, 'X');
     SetClave("");
+    SetNombreUsuario("");
 }
 
 Persona::Persona(char Nombres[20], char Appat[20], char Apmat[20], int edad, char Sexo) {
-    // cod_persona = cod;
     SetPersona(Nombres, Appat, Apmat, edad, Sexo);
-    SetClave("");
 }
 
 void Persona::SetCodigo(long cod) {
     cod_persona = cod;
 }
 
+void Persona::SetNombreUsuario(char nombreU[20]) {
+    strcpy(nombre_usuario, nombreU);
+}
+
 void Persona::SetTipo(char tipo) {
 	this->tipo= tipo;
 }
 
-void Persona::SetPersona(char Nombres[20], char Appat[20], char Apmat[20], int edad, char Sexo) {
-    strcpy(nombres, Nombres);
-    strcpy(appat, Appat);
-    strcpy(apmat, Apmat);
-    this->edad = edad;
-    this->sexo = Sexo;
+void Persona::SetPersona(char Nombres[20], char Appat[20], char Apmat[20], int Edad, char Sexo) {
+	if(Validar(Nombres))
+		strcpy(nombres,Nombres);
+	else
+		strcpy(nombres,"");
+
+	if(Validar(Appat))
+		strcpy(appat,Appat);
+	else
+		strcpy(appat,"");
+
+	if(Validar(Apmat))
+		strcpy(apmat,Apmat);
+	else
+		strcpy(apmat,"");
+
+	if(Edad>=0)
+		edad=Edad;
+	else
+		edad=0;
+
+	if(ValidarSexo(Sexo))
+		sexo=Sexo;
+	else
+		sexo='x';
 }
 
 void Persona::SetPersona(const Persona& p) {
@@ -63,6 +85,10 @@ char*Persona::GetClave(){
     return clave;
 }
 
+char*Persona::GetNombreUsuario() {
+    return nombre_usuario;
+}
+
 void Persona::Mostrar() {
     cout << "Codigo: " << cod_persona << endl;
     cout << "Nombres: " << nombres << endl;
@@ -83,8 +109,19 @@ bool Persona::operator==(Persona persona){
 	return false;
 }
 
-// bool Fecha::operator==(Fecha fecha){
-//     if(dia==fecha.dia && mes==fecha.mes && anio==fecha.anio)
-//         return true;
-//     return false;
-// }
+bool Persona::Validar(char cad[20]){
+	int i=0;
+	while(cad[i]!='\0'){
+		if(cad[i]==' '){}
+		else if(!isalpha(cad[i]))//verifica si un caracter es una letra del alfabeto si no es una letra del alfabeto retorna falso
+			return false;
+		i++;
+	}
+	return true;
+}
+
+bool Persona::ValidarSexo(char Sexo){
+	if(Sexo=='M' || Sexo=='m' || Sexo=='F'|| Sexo=='f')
+		return true;
+	return false;
+}

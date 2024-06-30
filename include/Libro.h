@@ -1,5 +1,9 @@
 #ifndef LIBRO_H
 #define LIBRO_H
+#include <string.h>
+#include <iostream>
+using namespace std;
+
 class Libro{
 	private:
 		int cod_libro;
@@ -29,7 +33,6 @@ class Libro{
 		int GetEdicion();
 		char*GetIdioma();
 		void MostrarConsulta();
-
 		char*Validar(char cad[50]);
 		int Validar(int num);
 

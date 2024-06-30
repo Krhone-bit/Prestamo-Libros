@@ -14,6 +14,13 @@ Fecha::Fecha(int dd,int mm,int aa){
 	mes=mm;
 	anio=aa;
 }
+
+bool Fecha::validarFecha(int dd,int mm,int aa){
+	if(dd<1 || dd>31) return false;
+	if(mm<1 || mm>12) return false;
+	if(aa<0) return false;
+	return true;
+}
 void Fecha::SetDia(int dd){
     dia=dd;
 }
@@ -52,4 +59,10 @@ void Fecha::Mostrar()
 	}
 	cout<<" del "<<anio;
 	cout<<endl;
+}
+
+bool Fecha::operator==(Fecha fecha){
+    if(dia==fecha.dia && mes==fecha.mes && anio==fecha.anio)
+        return true;
+    return false;
 }

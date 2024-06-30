@@ -16,8 +16,9 @@ class Guardar
         void GuardarLibro(Libro li,char dir[15]);
         // void GuardarCelular(Celular&cel);
         // void GuardarVentaCelular(VentaCelular ven);
+        void ActualizarLibro(Libro li);
         void GuardarAdmin();
-        void GuardarPrestamo(Prestamo pre);
+        void GuardarPrestamo(const Prestamo&pre);
 };
         
 #endif // GUARDAR_H

@@ -107,12 +107,7 @@ void Libro::Mostrar(){
 }
 
 void Libro::MostrarConsulta(){
-	char st[20];
-	if(disponible){
-		strcpy(st,"Disponible");	
-	}else{
-		strcpy(st,"No Disponible");
-	}
-	cout<<cod_libro<<"\t\t"<<nombre<<"\t"<<autor<<"\t"<<paginas<<"\t";
-	cout<<edicion<<"\t"<<idioma<<"\t"<<st<<endl;
+	cout<<cod_libro << "\t" << nombre << "\t" << autor << "\t"
+             << paginas << "\t" << edicion << "\t" << idioma << "\t"
+             << (disponible ? "Disponible" : "No disponible") << endl;
 }
